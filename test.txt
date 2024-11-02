@@ -1,0 +1,30 @@
+(0)     jmp 0       [Always put ptr at 0]
+        set 72      [h]
+        fwd
+        set 101     [e]
+        fwd
+        set 108     [l]
+        fwd
+        set 108     [l]
+        fwd
+        set 111     [o]
+        fwd
+        set 32      [ ]
+        fwd
+        set 87      [w]
+        fwd
+        set 111     [o]
+        fwd
+        set 114     [2]
+        fwd
+        set 108     [l]
+        fwd
+        set 100     [d]
+        jmp 0       [put ptr at 0]
+        pnt         [print Hello World]
+        jmp 15      [put ptr at 15]
+        inc         [increment 15 by 1]
+        ieq 3       [if ptr=15 is 3]
+        gto 1       [if true go to marker 1]
+        gto 0       [if false go to marker 0]
+(1)     ext         [exit program]
