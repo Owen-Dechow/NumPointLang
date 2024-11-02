@@ -20,7 +20,7 @@ def process_command_list(paper: list[int], commands: list, goto_map: dict[int, i
             case Command.Jump:
                 ptr = command.to % PAPER_LENGTH
             case Command.Flip:
-                paper[ptr] = not paper[ptr]
+                paper[ptr] = int(not paper[ptr])
             case Command.Print:
                 print(
                     bytes(paper[ptr : (paper + [0])[ptr:].index(0)]).decode("UTF-8"),
