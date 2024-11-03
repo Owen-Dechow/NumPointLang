@@ -22,10 +22,9 @@ def process_command_list(paper: list[int], commands: list, goto_map: dict[int, i
             case Command.Flip:
                 paper[ptr] = int(not paper[ptr])
             case Command.Print:
-                print(
-                    bytes(paper[ptr : (paper + [0])[ptr:].index(0)]).decode("UTF-8"),
-                    end="\n",
-                )
+                left = ptr
+                right = ptr + (paper[ptr:] + [0]).index(0)
+                print(bytes(paper[left:right]).decode("UTF-8"), end="")
             case Command.Inc:
                 paper[ptr] += 1
             case Command.Dec:

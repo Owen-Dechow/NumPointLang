@@ -1,0 +1,93 @@
+    [Fizz 0-4]
+        set 70     
+        fwd
+        set 105
+        fwd
+        set 122
+        fwd
+        set 122
+        fwd
+
+
+    [Buzz 5-9]
+        fwd        
+        set 66     
+        fwd
+        set 117
+        fwd
+        set 122
+        fwd
+        set 122
+        fwd
+
+    [New line 10-11]
+        fwd
+        set 10
+        fwd
+
+    [Set counters]
+        jmp 12      [Fizz 12]
+        set -1
+        fwd         [Buzz 13]
+        set -1
+        fwd         [Total 14]
+        set 47
+
+    [Skip first newline]
+        gto 1
+
+    [Print new line]
+(8)     jmp 10
+        pnt
+
+    [Fizz count]
+(1)     jmp 12
+        inc
+        ieq 3
+        gto 2
+
+    [Buzz count]
+(3)     jmp 13      [Allow num print]
+        inc
+        ieq 5
+        gto 4
+        gto 9
+
+(6)     jmp 13      [Prevent num print]
+        inc
+        ieq 5
+        gto 4
+        gto 7
+
+    [Total count]
+(9)     jmp 14      [Print num]
+        inc
+        pnt
+        ieq 57
+        gto 5
+        gto 8
+
+(7)     jmp 14      [Skip print]
+        inc
+        ieq 57
+        gto 5
+        gto 8
+
+    [Fizz print]
+(2)     jmp 0
+        pnt
+        jmp 12
+        set 0
+        gto 6
+
+    [Buzz print]
+(4)     jmp 5       
+        pnt
+        jmp 13
+        set 0
+        gto 7
+
+    [Exit program]
+(5)     jmp 10
+        pnt
+        ext

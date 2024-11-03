@@ -64,14 +64,17 @@ def cleantext(text: str) -> str:
             if char == "]":
                 commenton = False
         elif char in " \t":
-            if cleanedtext[-1] not in " \n":
+            if cleanedtext and cleanedtext[-1] not in " \n":
                 cleanedtext += " "
         elif char == "[":
             commenton = True
+        elif char == "\n":
+            if cleanedtext and cleanedtext[-1] != "\n":
+                cleanedtext += char
         else:
             cleanedtext += char
 
-    return cleanedtext
+    return cleanedtext.strip()
 
 
 def parse(text: str) -> tuple[dict, list]:
