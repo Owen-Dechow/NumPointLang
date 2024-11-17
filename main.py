@@ -1,12 +1,22 @@
-from parse import parse
+from parse import ParserException, parse
 from interp import interp
-import sys
+from cli import CommandLineArgs, CommandParseException
 
 def main():
-    with open(sys.argv[1], "r") as f:
-        gt_map, commands = parse(f.read())
-        interp(gt_map, commands)
+    try:
+        args = CommandLineArgs()
+    except CommandParseException as e:
+        e.display()
+        return
 
+    with open(args.file, "r") as file:
+        file_content = file.read()
+        try:
+            gt_map, commands = parse(file_content)
+            interp(gt_map, commands)
+
+        except ParserException as e:
+            e.display() 
 
 if __name__ == "__main__":
     main()

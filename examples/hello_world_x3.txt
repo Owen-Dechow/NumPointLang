@@ -28,3 +28,4 @@
         gto 1       [if true go to marker 1]
         gto 0       [if false go to marker 0]
 (1)     ext         [exit program]
+

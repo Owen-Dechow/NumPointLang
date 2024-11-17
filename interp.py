@@ -1,4 +1,4 @@
-from parse import Command
+from parse import CMDS
 
 PAPER_LENGTH: int = 30_000
 
@@ -13,33 +13,33 @@ def process_command_list(paper: list[int], commands: list, goto_map: dict[int, i
         command = commands[cmd_ptr]
 
         match type(command):
-            case Command.Forward:
+            case CMDS.Forward:
                 ptr = ptr + 1 if ptr < LAST_PAPER_IDX else 0
-            case Command.Backward:
+            case CMDS.Backward:
                 ptr = ptr - 1 if ptr > 0 else LAST_PAPER_IDX
-            case Command.Jump:
-                ptr = command.to % PAPER_LENGTH
-            case Command.Flip:
+            case CMDS.Jump:
+                ptr = command.val % PAPER_LENGTH
+            case CMDS.Flip:
                 paper[ptr] = int(not paper[ptr])
-            case Command.Print:
+            case CMDS.Print:
                 left = ptr
                 right = ptr + (paper[ptr:] + [0]).index(0)
                 print(bytes(paper[left:right]).decode("UTF-8"), end="")
-            case Command.Inc:
+            case CMDS.Inc:
                 paper[ptr] += 1
-            case Command.Dec:
+            case CMDS.Dec:
                 paper[ptr] -= 1
-            case Command.Set:
-                paper[ptr] = command.to
-            case Command.GoTo:
-                cmd_ptr = goto_map[command.to] - 1
-            case Command.IfEq:
+            case CMDS.Set:
+                paper[ptr] = command.val
+            case CMDS.GoTo:
+                cmd_ptr = goto_map[command.val] - 1
+            case CMDS.IfEq:
                 if paper[ptr] != command.val:
                     cmd_ptr += 1
-            case Command.IfNotZero:
+            case CMDS.IfNotZero:
                 if paper[ptr] == 0:
                     cmd_ptr += 1
-            case Command.Exit:
+            case CMDS.Exit:
                 break
 
         cmd_ptr += 1
