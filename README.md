@@ -1,5 +1,7 @@
 # NumPointLang
 
+Read about it here: https://medium.com/@owen.dechow/emergence-and-esoteric-languages-2b356b8e5044
+
 A small esoteric programming language implimented in python and based on [TermsLang](https://github.com/Owen-Dechow/TermsLang), BrainF*, and X86 Assembly.
 
 ## Running
